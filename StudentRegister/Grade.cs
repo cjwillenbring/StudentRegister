@@ -6,10 +6,10 @@ namespace StudentRegister
 {
     public enum Grade
     {
-        A,
-        B,
-        C,
-        D,
-        F
+        A=4,
+        B=3,
+        C=2,
+        D=1,
+        F=0
     }
 }

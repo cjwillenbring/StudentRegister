@@ -19,9 +19,25 @@ namespace StudentRegister
 
         public string MI;
 
-        public double GPA { get; }
+        public double GPA
+        {
+            get
+            {
+                var numerator = 0.0;
+                var denominator = 0.0;
+                foreach (var cr in courseHistory)
+                {
+                    if (!cr.InProgress)
+                    {
+                        numerator += cr.CreditHours * (double)cr.Grade;
+                        denominator += cr.CreditHours;
+                    }
+                }
+                return numerator / denominator;
+            }
+        }
 
-        private List<CourseResult> courseHistory;
+        private List<CourseResult> courseHistory = new List<CourseResult>();
 
         public Student(string firstName, string lastName, string midInit)
         {
@@ -33,7 +49,7 @@ namespace StudentRegister
 
         public override string ToString()
         {
-            return $"{Last}, {First} {MI}";
+            return $"{Last}, {First} {MI} ({Wid}) GPA: {GPA}";
         }
 
         public bool EnrollinCourse(Course course)
@@ -56,7 +72,14 @@ namespace StudentRegister
 
         public bool CompleteCourse(Course course, Grade grade)
         {
-            return true;
+            var record = courseHistory.Find(x => x.Course == course);
+            if (record != null)
+            {
+                record.InProgress = false;
+                record.Grade = grade;
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace StudentRegister
 
         public string Semester;
 
-        public List<Student> Students;
+        public List<Student> Students = new List<Student>();
 
         public bool Equals(Course other)
         {
