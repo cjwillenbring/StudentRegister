@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace StudentRegister
 {
@@ -6,7 +7,17 @@ namespace StudentRegister
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            List<Student> students = new List<Student>()
+            {
+                new Student("Mary", "Contrary", "P"),
+                new Student("Blah", "Blah", "B"),
+                new Student("Foo", "Bar", "H")
+            };
+
+            foreach(Student s in students)
+            {
+                Console.WriteLine(s);
+            }
         }
     }
 }
